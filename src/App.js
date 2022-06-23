@@ -1,5 +1,7 @@
 import React from "react";
 import Container from './calculate'
+import Calculate from "./CalculatorClass";
+import Calculator from "./container3";
 
 const App = () => {
 
@@ -7,7 +9,9 @@ const App = () => {
     <div className="container">
       <div className="app__container">
 
-        <Container />
+        {/* <Container /> */}
+        {/* <Calculator /> */}
+        <Calculate />
       </div>
     </div>
   );
