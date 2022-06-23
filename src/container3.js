@@ -1,3 +1,5 @@
+import React from "react";
+
 class Calculator extends React.Component {
     constructor() {
         super();
@@ -11,7 +13,7 @@ class Calculator extends React.Component {
         }
     }
     enterDigit(value) {
-         if(value === '=') {
+        if (value === '=') {
             this.setState({
                 input: this.state.output,
                 output: '',
@@ -35,29 +37,29 @@ class Calculator extends React.Component {
         }
     }
     enterOperator(value) {
-        if(value == 'CLR') {
+        if (value == 'CLR') {
             this.setState({
                 input: '',
                 output: '',
                 operator: null
-            })           
-        } else if(value == 'DEL') {
+            })
+        } else if (value == 'DEL') {
             this.setState({
                 input: this.state.input.slice(0, -1)
-            }) 
+            })
         } else {
             this.setState({
                 input: this.state.input + value,
                 operator: value.replace(/x/g, '*').replace(/÷/g, '/')
             })
-            
+
         }
     }
     render() {
-        return(
+        return (
             <div>
                 <Display input={this.state.input} output={this.state.output} />
-                <CalcInput  enterDigit={this.enterDigit} enterOperator={this.enterOperator} deleteToggle={this.state.deleteToggle} />
+                <CalcInput enterDigit={this.enterDigit} enterOperator={this.enterOperator} deleteToggle={this.state.deleteToggle} />
             </div>
         )
     }
@@ -67,7 +69,7 @@ class Display extends React.Component {
         super(props);
     }
     render() {
-        return(
+        return (
             <div className="display z-depth-3">
                 <div className="input">{this.props.input.toString()}</div>
                 <div className="output">{this.props.output}</div>
@@ -77,10 +79,10 @@ class Display extends React.Component {
 }
 class CalcInput extends React.Component {
     render(props) {
-        return(
+        return (
             <div>
                 <KeyPad className="keypad" enterDigit={this.props.enterDigit} />
-                <Operators  enterOperator={this.props.enterOperator} deleteToggle={this.props.deleteToggle} />
+                <Operators enterOperator={this.props.enterOperator} deleteToggle={this.props.deleteToggle} />
                 <ExtendedOperators enterDigit={this.props.enterDigit} />
             </div>
         )
@@ -99,14 +101,14 @@ class KeyPad extends React.Component {
             rowTwo = [4, 5, 6],
             rowThree = [1, 2, 3],
             rowFour = [".", 0, '='];
- 
-        return(
+
+        return (
             <div className="keypad">
                 <div className="keyRow">{this.mapKeys(rowOne)}</div>
                 <div className="keyRow">{this.mapKeys(rowTwo)}</div>
                 <div className="keyRow">{this.mapKeys(rowThree)}</div>
                 <div className="keyRow">{this.mapKeys(rowFour)}</div>
-                
+
             </div>
         )
     }
@@ -115,18 +117,18 @@ class KeyPad extends React.Component {
 class Key extends React.Component {
     render() {
         const value = this.props.value;
-        return(
+        return (
             <button className="key waves-effect waves-circle waves-light" onClick={this.props.enterValue.bind(this, value)}>{value}</button>
-        ) 
+        )
     }
 }
 class Operators extends React.Component {
     constructor() {
         super();
     }
-    
+
     render() {
-        return(
+        return (
             <div className="operators">
                 <Key value={this.props.deleteToggle} enterValue={this.props.enterOperator} />
                 <Key value='÷' enterValue={this.props.enterOperator} />
@@ -139,9 +141,10 @@ class Operators extends React.Component {
 }
 class ExtendedOperators extends React.Component {
     render() {
-        return(
+        return (
             <div className="extendedOperators"></div>
         )
     }
 }
-ReactDOM.render(<Calculator />, document.getElementById('calculator'));
+//ReactDOM.render(<Calculator />, document.getElementById('calculator'));
+export default Calculator
